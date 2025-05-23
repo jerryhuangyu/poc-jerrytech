@@ -3,7 +3,7 @@
 	"private": true,
 	"scripts": {
 		"root:install": "npm run docusaurus:install && npm run next:install",
-		"root:build": "npm run docusaurus:build && npm run docusaurus:copy && npm run next:build",
+		"root:build": "npm run docusaurus:build && npm run docusaurus:copy && npm run next:build && npm run next:copy",
 		"root:serve": "cd apps/landing-profile && npm run start",
 
 		"docusaurus:install": "cd apps/docusaurus-blogs && npm install",
@@ -11,6 +11,7 @@
 		"docusaurus:copy": "cp -r apps/docusaurus-blogs/build apps/landing-profile/public/blogs",
 
 		"next:install": "cd apps/landing-profile && npm install",
-		"next:build": "cd apps/landing-profile && npm run build"
+		"next:build": "cd apps/landing-profile && npm run build",
+		"next:copy": "cp -r apps/landing-profile/public public"
 	}
 }
