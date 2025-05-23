@@ -1,0 +1,72 @@
+---
+title: "gRPC vs RESTful API"
+date: "2025-05-23"
+tags: ["grpc", "restful"]
+sidebar_position: 0
+---
+
+import ThemedImage from '@theme/ThemedImage';
+import LightMicroservicesWithRestfulApi from './img/microservices-with-restful-api.png';
+import DarkMicroservicesWithRestfulApi from './img/microservices-with-restful-api-dark.png';
+
+> 在現代應用程式架構中，服務之間的通訊是不可或缺的。gRPC 和 REST 是兩種常見的 API 設計方法，它們各自有著不同的特性和適用場景。
+
+<ThemedImage
+  alt="Microservices with RESTful API"
+  sources={{
+    light: LightMicroservicesWithRestfulApi,
+    dark: DarkMicroservicesWithRestfulApi,
+  }}
+/>
+
+## gRPC 與 REST 的相似之處
+
+1. **基於 HTTP 的通訊**：兩者都使用 HTTP 作為傳輸協定，REST 通常使用 HTTP/1.1，傳輸協定對於開發人員來說是顯性的。而 gRPC 則使用 HTTP/2，提供更高效的通訊能力，傳輸協定對於開發人員來說是隱性的。
+2. **無狀態設計**：gRPC 和 REST 都採用無狀態的設計，伺服器不需記住用戶端的狀態，這有助於實現可擴展的分散式系統。
+
+## gRPC 與 REST 的差異
+
+### 1. 設計模型
+
+- **gRPC**：用戶端可以遠端直接調用伺服器上定義的函數，就像本地函數一樣。這種方式被稱為服務導向設計。
+- **REST**：是以「資源」為核心的設計。用戶端透過 HTTP 動詞（像是 GET、POST、PUT）對資源進行操作，這稱為資源導向設計。
+
+### 2. 資料交換格式
+
+- **gRPC（使用 Protocol Buffers）**：使用的是二進位格式，傳輸的資料更小、處理速度更快，適合高效能需求。但缺點是資料不易閱讀，開發時需工具輔助查看內容。
+- **REST（使用 JSON）**：使用的是文字格式，容易閱讀、除錯也方便，幾乎所有前端框架都支援。但相對來說資料體積較大，速度較慢，對頻寬消耗較高。
+    
+
+### 3. 通訊模式
+
+- **REST**：每次請求對應一次回應，單向一來一回，用戶端要等伺服器回應才能繼續，是最常見的一對一模式。
+- **gRPC**：除了支援一對一，也支援伺服器連續推資料給用戶端（伺服器串流）、用戶端一次送多筆資料（用戶端串流），甚至是雙方同時傳資料（雙向串流），這些進階通訊模式得益於 HTTP/2 的支援。
+
+### 4. 耦合程度
+
+- **gRPC（緊耦合）**：用戶端與伺服器要共用 `.proto` 檔案（定義格式與函數），改動定義時雙方都要同步更新。
+- **REST（鬆耦合）**：只要遵守 API 格式，用戶端不需要知道伺服器的內部細節。這讓 API 比較容易演進與維護。
+
+| **特性** | **gRPC** | **REST** |
+| --- | --- | --- |
+| **設計模型** | 服務導向（函式呼叫） | 資源導向（URL + HTTP 動詞） |
+| **資料格式** | Protocol Buffers | 通常使用 JSON |
+| **通訊模式** | 支援請求-回應、伺服器串流、用戶端串流和雙向串流 | 僅支援請求-回應 |
+| **效能** | 高效能，低延遲，適合高頻率通訊 | 效能較低，適合一般應用 |
+| **耦合度** | 緊耦合（共享 `.proto`） | 鬆耦合 |
+| **瀏覽器支援** | 支援有限，需透過中介層實現(grpc-web) | 廣泛支援，適合公開 API |
+
+## 適用場景
+
+- **gRPC**：適合內部微服務通訊、需要高效能和低延遲的應用，如即時通訊、影音串流等。
+- **REST**：適合公開 API、需要廣泛兼容性的應用，如 Web 應用、移動應用、簡單 CRUD 服務。
+
+## 結論
+
+gRPC 和 REST 各有優缺點，選擇適合的通訊方式需根據應用的需求和特性。gRPC 提供高效能的通訊能力，適合內部系統間的高頻率通訊；REST 則因其簡單易用和廣泛的支援，適合公開 API 和多樣化的客戶端。
+
+## 參考
+
+1. [AWS - 比較 gRPC 與 REST 的差異](https://aws.amazon.com/tw/compare/the-difference-between-grpc-and-rest/)
+2. [iThome - gRPC vs REST 實作比較](https://ithelp.ithome.com.tw/articles/10357900)
+3. [Youtube - What is RPC? gRPC Introduction](https://www.youtube.com/watch?v=gnchfOojMk4)
