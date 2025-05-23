@@ -1,0 +1,12 @@
+{
+	"name": "jerrytech",
+	"private": true,
+	"scripts": {
+		"build": "pnpm run docusaurus:build && pnpm run docusaurus:copy && pnpm run next:build",
+		"docusaurus:build": "cd apps/docusaurus-blogs && pnpm install && pnpm run build",
+		"docusaurus:copy": "cp -r apps/docusaurus-blogs/build apps/landing-profile/public/blogs",
+		"next:build": "cd apps/landing-profile && pnpm install && pnpm run build",
+		"serve": "cd apps/landing-profile && pnpm run start"
+	},
+	"workspaces": ["apps/*"]
+}
