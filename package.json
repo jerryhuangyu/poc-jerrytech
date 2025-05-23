@@ -2,15 +2,15 @@
 	"name": "jerrytech",
 	"private": true,
 	"scripts": {
-		"root:install": "pnpm docusaurus:install && pnpm next:install",
-		"root:build": "pnpm run docusaurus:build && pnpm run docusaurus:copy && pnpm run next:build",
-		"root:serve": "cd apps/landing-profile && pnpm run start",
+		"root:install": "npm run docusaurus:install && npm run next:install",
+		"root:build": "npm run docusaurus:build && npm run docusaurus:copy && npm run next:build",
+		"root:serve": "cd apps/landing-profile && npm run start",
 
-		"docusaurus:install": "cd apps/docusaurus-blogs && pnpm install",
-		"docusaurus:build": "cd apps/docusaurus-blogs && pnpm run build",
+		"docusaurus:install": "cd apps/docusaurus-blogs && npm install",
+		"docusaurus:build": "cd apps/docusaurus-blogs && npm run build",
 		"docusaurus:copy": "cp -r apps/docusaurus-blogs/build apps/landing-profile/public/blogs",
 
-		"next:install": "cd apps/landing-profile && pnpm install",
-		"next:build": "cd apps/landing-profile && pnpm run build"
+		"next:install": "cd apps/landing-profile && npm install",
+		"next:build": "cd apps/landing-profile && npm run build"
 	}
 }
