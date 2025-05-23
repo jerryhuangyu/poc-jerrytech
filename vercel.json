@@ -1,6 +1,6 @@
 {
-	"buildCommand": "pnpm root:build",
-	"installCommand": "corepack enable && corepack prepare pnpm@9.9.0 --activate && pnpm root:install",
+	"buildCommand": "npm run root:build",
+	"installCommand": "npm run root:install",
 	"rewrites": [
 		{ "source": "/blogs", "destination": "/blogs/index.html" },
 		{ "source": "/blogs/:path*", "destination": "/blogs/index.html" }
